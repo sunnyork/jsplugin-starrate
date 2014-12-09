@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StarRate</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- Facebook og -->
+    <meta property="og:title" content ="test">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="test">
+    <meta property="og:image" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="introduction.....">
+    <link rel="stylesheet" href="starRate.css">
+    <link rel="shortcut icon" href="">
+    <style>
+h3 {
+	margin:30px 0 5px;
+}
+    </style>
+</head>
+<body>
+	<h3>init by js as dom ready</h3>
+	<div class="starRate">
+		<input type="hidden" name="myStarName1">
+		<span title="set level = 1 stars"></span>
+		<span title="set level = 2 stars"></span>
+		<span title="set level = 3 stars"></span>
+		<span title="set level = 4 stars"></span>
+		<span title="set level = 5 stars"></span>
+	</div>
+
+	<h3>automatic click as initialize</h3>
+	<div class="starRate">
+		<input type="hidden" name="myStarName2">
+		<span title="set level = 1 stars"></span>
+		<span title="set level = 2 stars"></span>
+		<span title="set level = 3 stars"></span>
+		<span title="set level = 4 stars"></span>
+		<span title="set level = 5 stars"></span>
+	</div>
+
+	<h3>trigger click event by other element</h3>
+	<div class="btnwrap">
+		<input type="hidden" name="myStarName3">
+		<button>click 1 star</button>
+		<button>click 2 stars</button>
+		<button>click 3 stars</button>
+		<button>click 4 stars</button>
+		<button>click 5 stars</button>
+	</div>
+	<div class="starRate">
+		<input type="hidden" name="myStarName2">
+		<span title="set level = 1 stars"></span>
+		<span title="set level = 2 stars"></span>
+		<span title="set level = 3 stars"></span>
+		<span title="set level = 4 stars"></span>
+		<span title="set level = 5 stars"></span>
+	</div>
+
+	<h3>gen. new star, append to body, and bind event</h3>
+	<button id="gen-star">generate new star</button>
+
+	<script src="jquery.min.js"></script>
+	<script src="starRate.debug.js"></script>
+	<script>
+$(function(){
+
+	$('.starRate').starRate();  	
+
+	var starRate = $('.starRate'),
+			api2 = starRate.eq(1).data('starRate'),
+			api3 = starRate.eq(2).data('starRate'),
+			btns = $('.btnwrap').find('button'),
+			dom = $('	<p><div class="starRate"><input type="hidden"><span title="set level = 1 stars"></span><span title="set level = 2 stars"></span><span title="set level = 3 stars"></span><span title="set level = 4 stars"></span><span title="set level = 5 stars"></span></div></p>');
+
+	// automatic click 
+	api2.clickStar(3);
+
+	// trigger click event by other elements
+	btns.each(function(i,e){
+		var btn = $(e),
+				idx = btns.index(e) + 1;
+		btn.click(function(){
+			api3.clickStar(idx);
+		});
+
+	});
+
+	// gen. new star
+	$('#gen-star').click(function(){
+		var newStar = dom.clone().appendTo('body');
+		newStar.starRate();
+	});
+})
+	</script>
+</body>
+</html>

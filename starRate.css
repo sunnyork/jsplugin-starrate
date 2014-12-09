@@ -1,0 +1,22 @@
+.starRate {
+  cursor: pointer;
+  width: 100px;
+  height: 17px;
+}
+.starRate span {
+  display: inline-block;
+  float: left;
+  margin-right: 3px;
+  background-image: url('starRate.png');
+}
+.starRate span.chked {
+  background-position: 0 0 !important;
+}
+.starRate span {
+  width: 17px;
+  height: 17px;
+  background-position: -17px 0;
+}
+.starRate span.hover {
+  background-position: -34px 0 !important;
+}

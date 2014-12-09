@@ -1,0 +1,28 @@
+@sm-width:17px;
+@sm-height:17px;
+@star-space: 3px;
+@star-url:'starRate.png';
+.starRate {
+	cursor:pointer;
+	span {
+		display: inline-block;
+		float: left;
+		margin-right: @star-space;
+		background-image:url(@star-url);
+		// background-size:cover;
+		&.chked {
+			background-position: 0 0 !important;
+		}
+	}
+	width:(@sm-width + @star-space)*5;
+	height:@sm-height;
+	span {
+		width:@sm-width;
+		height:@sm-height;
+		background-position: -1*@sm-width 0;
+		background-position: -1*@sm-width 0;
+		&.hover {
+			background-position: -1*@sm-width*2 0 !important;
+		}
+	}
+}
