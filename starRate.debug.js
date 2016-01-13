@@ -6,7 +6,12 @@
 /* copyright (c) since 2014. Audatex TWIC.
 /* ***************************************/
 
+/* ***************************************
+/* [=====TODO=====]
+/* make initial level configurable!
+/* ***************************************/
 $(function() {
+
 $.fn.extend({
   starRate: function() {
     return $(this).each(function(i, e) {
@@ -47,6 +52,10 @@ $.fn.extend({
               wrap.bind('mouseleave', function() {
                 stars.removeClass('hover');
               });
+            },
+            initLevel = 1,
+            setInitLevel = function() {
+              wrap.data('starRate').clickStar(initLevel);
             };
 
           // public func.
@@ -73,6 +82,7 @@ $.fn.extend({
           };
           obj.init = function() {
             bindE();
+            setInitLevel();
           };
 
         },
